@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+        "module": "none",
+        "sourceMap": true,
+        "outDir": "dist/",
+        "removeComments": true,
+        "moduleResolution": "node",
+        "target" : "ES6"
+    },
+    "include": [
+        "src/*",
+        "typings/*"
+      ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
