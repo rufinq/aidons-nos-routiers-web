@@ -1,0 +1,45 @@
+{
+  "name": "aidons-nos-routiers-web",
+  "version": "1.0.0",
+  "description": "Web app to help french truck drivers",
+  "main": "src/script.ts",
+  "scripts": {
+    "dev": "parcel index.html",
+    "build": "rm -rf ./dist/* && parcel build index.html  --no-source-maps --public-url ./",
+    "lint": "eslint . --ext .js,.ts",
+    "lint-fix": "eslint . --ext .js,.ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rufinq/aidons-nos-routiers-web.git"
+  },
+  "keywords": [
+    "truck drivers",
+    "help"
+  ],
+  "author": "Quentin Rufin",
+  "license": " GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/rufinq/aidons-nos-routiers-web/issues"
+  },
+  "homepage": "https://github.com/rufinq/aidons-nos-routiers-web#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@parcel/validator-typescript": "^2.0.0-alpha.3",
+    "@types/googlemaps": "^3.39.3",
+    "@types/node": "^13.11.1",
+    "@typescript-eslint/eslint-plugin": "^2.27.0",
+    "@typescript-eslint/parser": "^2.27.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "eslint": "^6.8.0",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.26.3",
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "googlemaps": "^1.12.0",
+    "load-google-maps-api": "^2.0.2"
+  }
+}

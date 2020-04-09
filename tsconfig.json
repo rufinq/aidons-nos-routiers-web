@@ -1,15 +1,14 @@
 {
     "compilerOptions": {
-        "module": "none",
-        "sourceMap": true,
-        "outDir": "dist/",
+        "module": "es6",
         "removeComments": true,
         "moduleResolution": "node",
-        "target" : "ES6"
+        "target" : "ES2019",
+        "strict": true
     },
     "include": [
-        "src/*",
-        "typings/*"
+        "src/**/*",
+        "typings/*",
       ],
     "exclude": [
         "node_modules",
