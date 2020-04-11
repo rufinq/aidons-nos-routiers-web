@@ -1,3 +1,6 @@
+import * as functions from 'firebase-functions'
+import fetch from 'node-fetch'
+
 interface Field {
     addionalInformation: string | null;
     latitude: number;
@@ -18,7 +21,7 @@ interface Response {
     createdTime: Date;
 }
 
-export interface Record extends Field {
+interface Record extends Field {
     id: string;
     services: string[];
     name: string;
@@ -64,11 +67,14 @@ const formatResponse = (accumulator: Record[], currentValue: Response): Record[]
     return accumulator
 }
 
-export default async function call(): Promise<Record[]>{
-    const url = process.env.API_AIRTABLE as string
-    const request = await fetch(url)
+export const apiCall = functions.https.onCall(async () => {
+    const {api} = functions.config()
+    const {airtable} = api
+
+    const request = await fetch(airtable)
     const {records} = await request.json()
     return records
         .filter(filter)
         .reduce(formatResponse, [])
-}
+})
+

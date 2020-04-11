@@ -14,11 +14,6 @@ module.exports = {
       'plugin:@typescript-eslint/eslint-recommended',
       'plugin:@typescript-eslint/recommended',
     ],
-    parserOptions: {
-      emacVersion: 6,
-      project: './tsconfig.json',
-      sourceType: 'module'
-    },
     rules: {
       indent: [
         'error',

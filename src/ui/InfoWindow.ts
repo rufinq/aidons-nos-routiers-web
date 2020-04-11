@@ -1,11 +1,17 @@
-import { Record } from '../api/api'
 import './infoWindow.scss'
+interface Data{
+    services: string[];
+    name: string;
+    phoneNumber: string;
+    longitude: string;
+    latitude: string;
+}
 
 export default class InfoWindow{
-    private container?: Element | null
+    _container?: Element | null
 
-    public create(): void{
-        if (!this.container){
+    create(): void{
+        if (!this._container){
             const element = `
                 <div class="infoWindow">
                     <div class="infoWindow__coordinates">
@@ -20,17 +26,17 @@ export default class InfoWindow{
             `
 
             document.body.insertAdjacentHTML('afterbegin', element)
-            this.container = document.querySelector('.infoWindow')
+            this._container = document.querySelector('.infoWindow')
         }
     }
 
-    public render(data: Record): void{
+    render(data: Data): void{
         const {services, name, phoneNumber, longitude, latitude} = data
-        if (this.container){
-            const title = this.container.querySelector('.infoWindow__title') as HTMLElement
-            const tel = this.container.querySelector('.infoWindow__tel') as HTMLElement
-            const latLng = this.container.querySelector('.infoWindow__latlng') as HTMLElement
-            const description = this.container.querySelector('.infoWindow__description') as HTMLElement
+        if (this._container){
+            const title = this._container.querySelector('.infoWindow__title') as HTMLElement
+            const tel = this._container.querySelector('.infoWindow__tel') as HTMLElement
+            const latLng = this._container.querySelector('.infoWindow__latlng') as HTMLElement
+            const description = this._container.querySelector('.infoWindow__description') as HTMLElement
 
             description.innerHTML = ''
             title.innerHTML = name
@@ -42,7 +48,7 @@ export default class InfoWindow{
                 description.innerHTML = `<ul>${services.map((item) => `<li>${item}</li>`).join('')}</ul>`
             }
 
-            (this.container as HTMLElement).style.opacity = 'initial'
+            (this._container as HTMLElement).style.opacity = 'initial'
         }
     }
 }

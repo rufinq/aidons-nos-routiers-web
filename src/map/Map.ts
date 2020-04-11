@@ -12,16 +12,16 @@ interface MapOptions extends google.maps.MapOptions{
 }
 
 class GoogleMap {
-    private api: typeof google.maps
+    _api: typeof google.maps
 
-    private lastClickedMaker?: google.maps.Marker
+    _lastClickedMaker?: google.maps.Marker
 
     constructor(api: typeof google.maps){
-        this.api = api
+        this._api = api
     }
     
-    public createMap(options: MapOptions): Promise<google.maps.Map> {
-        const {Map} = this.api
+    createMap(options: MapOptions): Promise<google.maps.Map> {
+        const {Map} = this._api
         const {divId, ...rest} = options
 
         const mapDiv: Element | null = document.getElementById(divId)
@@ -42,8 +42,8 @@ class GoogleMap {
         return Promise.resolve(instance)
     }
 
-    public createMarker(coordinates: Coordinates, map: google.maps.Map, infoWindowCallback?: Function): google.maps.Marker {
-        const {Marker} = this.api
+    createMarker(coordinates: Coordinates, map: google.maps.Map, infoWindowCallback?: Function): google.maps.Marker {
+        const {Marker} = this._api
         const marker = new Marker({
             position: coordinates,
             map,
@@ -52,13 +52,13 @@ class GoogleMap {
 
         marker.addListener('click', () => {
 
-            if (!this.lastClickedMaker){
-                this.lastClickedMaker = marker
+            if (!this._lastClickedMaker){
+                this._lastClickedMaker = marker
             }
             
-            if (this.lastClickedMaker !== marker){
-                this.lastClickedMaker.setIcon(poiIcon)
-                this.lastClickedMaker = marker
+            if (this._lastClickedMaker !== marker){
+                this._lastClickedMaker.setIcon(poiIcon)
+                this._lastClickedMaker = marker
             }
 
             if (infoWindowCallback){
